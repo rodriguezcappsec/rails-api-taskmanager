@@ -6,14 +6,18 @@ class TasksController < ProtectedController
   # GET /tasks
   def index
     @tasks = Task.all
-
-    render json:
-    {
-      task: @tasks,
-      current: {
-        user: current_user.id
+    if current_user.isadmin
+      render json:
+      {
+        task: @tasks,
+        is_admin: current_user.isadmin
       }
-    }
+    else
+      render json:
+      {
+        task: Task.select { |item| item.user_id == current_user.id }.as_json(except: not_show)
+      }
+    end
   end
 
   # GET /tasks/1
@@ -22,7 +26,7 @@ class TasksController < ProtectedController
       render json: set_task.as_json(except: not_show)
     else
       render json: {
-         error: "Require excalation! not enough privileges"
+        error: 'Require excalation! not enough privileges'
       }
      end
   end
@@ -60,7 +64,7 @@ class TasksController < ProtectedController
   end
 
   def not_show
-    %i[created_at updated_at password_digest token]
+    %i[created_at updated_at password_digest]
   end
 
   # Only allow a trusted parameter "white list" through.

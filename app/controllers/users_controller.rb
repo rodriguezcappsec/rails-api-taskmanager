@@ -52,10 +52,7 @@ class UsersController < ProtectedController
   end
 
   def show
-    render json: {
-      user: User.all,
-      current_user_id: current_user.id
-    }
+    render json: User.find(params[:id])
   end
 
   def update
