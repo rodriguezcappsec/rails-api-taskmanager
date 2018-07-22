@@ -7,15 +7,11 @@ class TasksController < ProtectedController
   def index
     @tasks = Task.all
     if current_user.isadmin
-      render json:
-      {
-        task: @tasks,
-        is_admin: current_user.isadmin
-      }
+      render json: @tasks
     else
       render json:
       {
-        task: Task.select { |item| item.user_id == current_user.id }.as_json(except: not_show)
+        tasks: Task.select { |item| item.user_id == current_user.id }.as_json(except: not_show)
       }
     end
   end

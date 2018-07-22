@@ -51,6 +51,13 @@ class UsersController < ProtectedController
     render json: User.all
   end
 
+  def delete
+    @task = Task.where(user_id: params[:id])
+    @task.each(&:destroy)
+    User.find(params[:id]).destroy
+    render json: User.all
+  end
+
   def show
     render json: User.find(params[:id])
   end
@@ -83,6 +90,6 @@ class UsersController < ProtectedController
 
   def user_params
     params.require(:user)
-          .permit(:email, :role, :full_name, :profile_picture, :dob, :salary, :address, :zip_code)
+          .permit(:email, :role, :full_name, :profile_picture, :dob, :salary, :address, :zip_code, :user_id, :isadmin)
   end
 end
