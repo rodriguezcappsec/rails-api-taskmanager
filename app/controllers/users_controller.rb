@@ -31,6 +31,7 @@ class UsersController < ProtectedController
     head :no_content
   end
 
+
   # PATCH '/change-password/:id'
   def changepw
     # if the the old password authenticates,
@@ -80,7 +81,7 @@ class UsersController < ProtectedController
     params.require(:credentials)
           .permit(:email, :password, :password_confirmation,
                   :profile_picture, :role, :full_name,
-                  :dob, :salary, :address, :zip_code, :user_id)
+                  :dob, :salary, :address, :zip_code, :user_id, :isadmin)
   end
 
   def pw_creds
