@@ -8,7 +8,7 @@
 -[Diagram](https://i.imgur.com/PsOyIbf.jpg)
 
 
-###Admin Account
+### Test Accounts
 
 -admin@test.com / pass:admin
 -All passwords for the employees in the Employees section is 123456
