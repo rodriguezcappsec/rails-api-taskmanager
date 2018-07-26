@@ -10,7 +10,7 @@
 
 ### Test Accounts
 
--admin@test.com / pass:admin
+-Send me an email for the admin account, this system is meant to be internal for companies.
 
 -All passwords for the employees in the Employees section is 123456
 
